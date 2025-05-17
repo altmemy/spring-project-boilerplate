@@ -1,0 +1,89 @@
+{
+  "name": "spring-project-boilerplate",
+  "displayName": "Spring Project Boilerplate",
+  "description": "Quickly generate a standard folder structure for Spring Boot projects, including model, controller, service, repository, dto and mapper directories, to help you start coding faster.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:spring-project-boilerplate.createStructure",
+    "onCommand:spring-project-boilerplate.createEntityWithLayers",
+    "onCommand:spring-project-boilerplate.generateDtoAndMapper"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "spring-project-boilerplate.createStructure",
+        "title": "Create Spring Boot Structure",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.createEntityWithLayers",
+        "title": "Create Entity with Layers",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.generateDtoAndMapper",
+        "title": "Generate DTO & Mapper",
+        "category": "Spring Project Boilerplate"
+      }
+    ],
+    "submenus": {
+      "spring-project-boilerplate.menu": {
+        "id": "spring-project-boilerplate.menu",
+        "label": "Spring Project Boilerplate",
+        "icon": "$(rocket)"
+      }
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "spring-project-boilerplate.menu",
+          "when": "(explorerResourceIsFolder && (resourceFilename == src || resourceFilename == model)) || (resourceExtname == .java && (resourcePath =~ /model\\/|model\\|model\\/|model/))",
+          "group": "navigation@1"
+        }
+      ],
+      "spring-project-boilerplate.menu": [
+        {
+          "command": "spring-project-boilerplate.createStructure",
+          "when": "resourceFilename == src",
+          "group": "1_structure"
+        },
+        {
+          "command": "spring-project-boilerplate.createEntityWithLayers",
+          "when": "resourceFilename == src || resourceFilename == model",
+          "group": "2_entity"
+        },
+        {
+          "command": "spring-project-boilerplate.generateDtoAndMapper",
+          "when": "resourceExtname == .java && (resourcePath =~ /model\\/|model\\|model\\/|model/)",
+          "group": "3_dto_mapper"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.100.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
