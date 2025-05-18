@@ -7,7 +7,6 @@ export function registerGenerateSecurityClasses(context: vscode.ExtensionContext
   let disposable = vscode.commands.registerCommand(
     'spring-project-boilerplate.generateSecurityClasses',
     async (uri?: vscode.Uri) => {
-      // 1. اختيار مجلد src أو المشروع
       let baseDir: string | undefined;
       if (uri && uri.fsPath) {
         baseDir = uri.fsPath;
@@ -25,7 +24,6 @@ export function registerGenerateSecurityClasses(context: vscode.ExtensionContext
         baseDir = folderUri[0].fsPath;
       }
 
-      // 2. تحديد src/main/java
       let javaSrcPath = path.join(baseDir, 'main', 'java');
       if (path.basename(baseDir) !== 'src') {
         javaSrcPath = path.join(baseDir, 'src', 'main', 'java');
@@ -35,21 +33,18 @@ export function registerGenerateSecurityClasses(context: vscode.ExtensionContext
         return;
       }
 
-      // 3. البحث عن الباكيج الأساسي
       const basePackageDir = findBasePackageDir(javaSrcPath);
       if (!basePackageDir) {
         vscode.window.showWarningMessage('Main class not found! Make sure your project contains a Main class in src/main/java.');
         return;
       }
 
-      // 4. تحديد المسار النهائي security
       const securityDir = path.join(basePackageDir, 'config', 'security');
       fs.mkdirSync(securityDir, { recursive: true });
 
-      // 5. استخرج اسم الباكيج
       const securityPackage = getPackageFromPath(securityDir);
 
-      // 6. محتوى SecurityConfig.java
+    
       const securityConfigContent = `package ${securityPackage};
 
 import org.springframework.context.annotation.Bean;
@@ -86,7 +81,7 @@ public class SecurityConfig {
 }
 `;
 
-      // 7. توليد الملف
+      // generate SecurityConfig.java
       const configPath = path.join(securityDir, 'SecurityConfig.java');
       if (!fs.existsSync(configPath)) {
         fs.writeFileSync(configPath, securityConfigContent, 'utf8');

@@ -1,6 +1,7 @@
 {
   "name": "spring-project-boilerplate",
   "displayName": "Spring Project Boilerplate",
+  "publisher": "altmemy", 
   "description": "Quickly generate a standard folder structure for Spring Boot projects, including model, controller, service, repository, dto and mapper directories, to help you start coding faster.",
   "version": "0.0.1",
   "engines": {
@@ -21,6 +22,10 @@
     "onCommand:spring-project-boilerplate.generateGlobalExceptionHandler"
   ],
   "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altmemy/spring-project-boilerplate"
+  },
   "contributes": {
     "commands": [
       {

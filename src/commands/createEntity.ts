@@ -25,7 +25,7 @@ export function registerCreateEntity(context: vscode.ExtensionContext) {
         baseDir = folderUri[0].fsPath;
       }
 
-      // التعامل مع src/main/java إذا ضغط على src
+      // if the selected folder is not a valid Java project, show a warning
       let javaSrcPath = '';
       if (path.basename(baseDir) === 'src') {
         javaSrcPath = path.join(baseDir, 'main', 'java');
@@ -37,7 +37,7 @@ export function registerCreateEntity(context: vscode.ExtensionContext) {
         return;
       }
 
-      // البحث عن package الأساسي
+      // search for the base package directory
       const basePackageDir = findBasePackageDir(javaSrcPath);
       if (!basePackageDir) {
         vscode.window.showWarningMessage(
@@ -46,16 +46,16 @@ export function registerCreateEntity(context: vscode.ExtensionContext) {
         return;
       }
 
-      // إنشاء مجلد model إذا غير موجود
+      // if the model directory does not exist, create it
       const modelDir = path.join(basePackageDir, 'model');
-      if (!fs.existsSync(modelDir)) fs.mkdirSync(modelDir);
+      if (!fs.existsSync(modelDir)) {fs.mkdirSync(modelDir);}
 
       const entityName = await vscode.window.showInputBox({
         prompt: 'Enter Entity Name (e.g., User)',
         placeHolder: 'User',
         validateInput: (val) => (!val || !/^[A-Z][a-zA-Z0-9]*$/.test(val)) ? 'Use CamelCase and start with uppercase' : undefined
       });
-      if (!entityName) return;
+      if (!entityName) {return;}
 
       const modelPackage = getPackageFromPath(modelDir);
       const modelPath = path.join(modelDir, `${entityName}.java`);

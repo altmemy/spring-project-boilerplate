@@ -2,7 +2,7 @@
 # Spring Project Boilerplate
 
 <p align="center">
-  <img src="https://spring.io/img/spring-2.svg" alt="Spring Project Boilerplate" width="180" />
+  <img src="images/spring-2.png" alt="Spring Project Boilerplate" width="180" />
   <br>
   <em>Accelerate. Generate. Focus.</em>
 </p>

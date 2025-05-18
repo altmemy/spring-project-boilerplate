@@ -14,7 +14,7 @@ export function registerGenerateDtoAndMapper(context: vscode.ExtensionContext) {
         return;
       }
 
-      // 1. استخرج معلومات الكلاس
+      // 1. extract the entity path and name
       const entityPath = uri.fsPath;
       const entityFileName = path.basename(entityPath);
       const entityName = entityFileName.replace(".java", "");
@@ -34,26 +34,22 @@ export function registerGenerateDtoAndMapper(context: vscode.ExtensionContext) {
       const dtoPath = path.join(dtoDir, `${entityName}Dto.java`);
       const mapperPath = path.join(mapperDir, `${entityName}Mapper.java`);
 
-      // 2. اسأل المستخدم عن نوع المابّر الذي يريد
+      // ask for the DTO package name
       const mapperType = await vscode.window.showQuickPick(
         ["Manual (Basic Java Class)", "MapStruct (Recommended)"],
         { placeHolder: "Choose Mapper implementation type" }
       );
-      if (!mapperType) return;
+      if (!mapperType) {return;}
 
-      // 3. استخرج الحقول تلقائياً من كود الـ Entity (ممكن تطوره لاحقاً)
       const entityContent = fs.readFileSync(entityPath, "utf8");
-      // نستخدم Regex بسيط لجلب الحقول العامة فقط
       const fieldRegex = /private\s+([A-Za-z0-9_<>]+)\s+([A-Za-z0-9_]+);/g;
       let fields = [];
       let match: RegExpExecArray | null;
       while ((match = fieldRegex.exec(entityContent)) !== null) {
-        // تجاهل كلمة السر من باب الأمان (مثال)
-        if (match[2] === "password") continue;
+        if (match[2] === "password") {continue;}
         fields.push({ type: match[1], name: match[2] });
       }
 
-      // 4. بناء DTO تلقائي
       let dtoContent = `package ${dtoPackage};
 
 public class ${entityName}Dto {
@@ -70,7 +66,7 @@ public class ${entityName}Dto {
       });
       dtoContent += "}\n";
 
-      // 5. بناء Mapper حسب نوعه
+      // 5. build the mapper content
       let mapperContent = "";
       if (mapperType.startsWith("Manual")) {
         // Manual Mapper
@@ -115,7 +111,7 @@ public interface ${entityName}Mapper {
 `;
       }
 
-      // 6. كتابة الملفات
+      // write the DTO and Mapper files
       try {
         if (!fs.existsSync(dtoPath)) {
           fs.writeFileSync(dtoPath, dtoContent, "utf8");

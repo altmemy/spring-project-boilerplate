@@ -24,7 +24,7 @@ export function registerGenerateGlobalExceptionHandler(context: vscode.Extension
         baseDir = folderUri[0].fsPath;
       }
 
-      // البحث عن مجلد java الأساسي (يعمل مع الضغط على src أو الجذر)
+      // search for the base package directory
       let javaSrcPath = '';
       if (path.basename(baseDir) === 'src') {
         javaSrcPath = path.join(baseDir, 'main', 'java');
@@ -36,7 +36,6 @@ export function registerGenerateGlobalExceptionHandler(context: vscode.Extension
         return;
       }
 
-      // البحث عن package الأساسي
       const basePackageDir = findBasePackageDir(javaSrcPath);
       if (!basePackageDir) {
         vscode.window.showWarningMessage(
@@ -45,16 +44,13 @@ export function registerGenerateGlobalExceptionHandler(context: vscode.Extension
         return;
       }
 
-      // انشاء مجلد handler أو exception إذا لم يوجد
       const handlerDir = path.join(basePackageDir, 'exception');
-      if (!fs.existsSync(handlerDir)) fs.mkdirSync(handlerDir);
+      if (!fs.existsSync(handlerDir)) {fs.mkdirSync(handlerDir);}
 
-      // اسم الكلاس
       const handlerClass = 'GlobalExceptionHandler';
       const handlerPath = path.join(handlerDir, `${handlerClass}.java`);
       const handlerPackage = getPackageFromPath(handlerDir);
 
-      // الكود الجاهز (مع اشهر الـ Exceptions)
       const handlerContent = `package ${handlerPackage};
 
 import org.springframework.http.HttpStatus;

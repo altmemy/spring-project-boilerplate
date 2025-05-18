@@ -7,13 +7,12 @@ export function registerGenerateMissingControllers(context: vscode.ExtensionCont
   let disposable = vscode.commands.registerCommand(
     'spring-project-boilerplate.generateMissingControllers',
     async (uri?: vscode.Uri) => {
-      // 1. تحديد مجلد controller
+      // 1. fetch the controller directory
       let controllerDir: string | undefined = uri?.fsPath;
       if (!controllerDir || path.basename(controllerDir) !== 'controller') {
         vscode.window.showWarningMessage('Please right-click on the controller folder.');
         return;
       }
-      // 2. اكتشاف مجلد model في نفس الـ basePackage
       const basePackageDir = path.dirname(controllerDir); // one level up (the main package)
       const modelDir = path.join(basePackageDir, 'model');
       if (!fs.existsSync(modelDir)) {
@@ -21,17 +20,14 @@ export function registerGenerateMissingControllers(context: vscode.ExtensionCont
         return;
       }
 
-      // 3. جلب جميع الكلاسات من model
       const entityFiles = fs.readdirSync(modelDir).filter(f => f.endsWith('.java'));
       if (entityFiles.length === 0) {
         vscode.window.showInformationMessage('No entity classes found in model directory.');
         return;
       }
 
-      // 4. جلب جميع الكلاسات من controller
       const controllerFiles = fs.readdirSync(controllerDir).filter(f => f.endsWith('Controller.java'));
 
-      // 5. تحديد الـ entity التي لا يوجد لها Controller
       const missing = entityFiles
         .map(entityFile => entityFile.replace('.java', ''))
         .filter(entityName => !controllerFiles.includes(entityName + 'Controller.java'));
@@ -41,7 +37,6 @@ export function registerGenerateMissingControllers(context: vscode.ExtensionCont
         return;
       }
 
-      // 6. توليد Controller لكل كيان ناقص
       const controllerPackage = getPackageFromPath(controllerDir);
       const servicePackage = getPackageFromPath(path.join(basePackageDir, 'service'));
       const modelPackage = getPackageFromPath(modelDir);
