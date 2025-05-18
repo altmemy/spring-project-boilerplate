@@ -12,7 +12,7 @@
   <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/d/your-publisher.spring-project-boilerplate?color=green" alt="Downloads"></a>
   <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/r/your-publisher.spring-project-boilerplate?color=yellow" alt="Rating"></a>
   <img src="https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen" alt="Spring Boot 3.x">
-  <img src="https://img.shields.io/badge/License-MIT-blue" alt="License">
+<img src="https://img.shields.io/badge/License-Apache_2.0-blue" alt="License">
 </p>
 
 > **Transform your development workflow** with a powerful VS Code extension that eliminates repetitive code creation and enforces best practices for Java & Spring Boot. Scaffold complete enterprise-ready projects in seconds.
@@ -332,7 +332,7 @@ Optional: Add Discord/Community link if available
 <p align="center">
   <em>Empowering Java & Spring Boot developers with modern, automated project scaffolding.</em>
   <br><br>
-  <a href="https://github.com/altmemy/spring-project-boilerplate/blob/main/LICENSE">MIT License</a> &nbsp;|&nbsp;
+  <a href="https://github.com/altmemy/spring-project-boilerplate/blob/main/LICENSE">Apache 2.0 License</a> &nbsp;|&nbsp;
   <a href="https://github.com/altmemy/spring-project-boilerplate">View on GitHub</a> &nbsp;|&nbsp;
   <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate">VS Code Marketplace</a>
 </p>
