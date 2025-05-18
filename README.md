@@ -334,6 +334,6 @@ Optional: Add Discord/Community link if available
   <br><br>
   <a href="https://github.com/altmemy/spring-project-boilerplate/blob/main/LICENSE">Apache 2.0 License</a> &nbsp;|&nbsp;
   <a href="https://github.com/altmemy/spring-project-boilerplate">View on GitHub</a> &nbsp;|&nbsp;
-  <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate">VS Code Marketplace</a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=altmemy.spring-project-boilerplate">VS Code Marketplace</a>
 </p>
 
