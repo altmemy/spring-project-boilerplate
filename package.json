@@ -11,8 +11,14 @@
   ],
   "activationEvents": [
     "onCommand:spring-project-boilerplate.createStructure",
+    "onCommand:spring-project-boilerplate.createEntity",
     "onCommand:spring-project-boilerplate.createEntityWithLayers",
-    "onCommand:spring-project-boilerplate.generateDtoAndMapper"
+    "onCommand:spring-project-boilerplate.generateMissingControllers",
+    "onCommand:spring-project-boilerplate.generateMissingServices",
+    "onCommand:spring-project-boilerplate.generateMissingRepositories",
+    "onCommand:spring-project-boilerplate.generateDtoAndMapper",
+    "onCommand:spring-project-boilerplate.generateSecurityClasses",
+    "onCommand:spring-project-boilerplate.generateGlobalExceptionHandler"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -23,13 +29,43 @@
         "category": "Spring Project Boilerplate"
       },
       {
+        "command": "spring-project-boilerplate.createEntity",
+        "title": "Create Entity (Model Only)",
+        "category": "Spring Project Boilerplate"
+      },
+      {
         "command": "spring-project-boilerplate.createEntityWithLayers",
         "title": "Create Entity with Layers",
         "category": "Spring Project Boilerplate"
       },
       {
+        "command": "spring-project-boilerplate.generateMissingControllers",
+        "title": "Generate Missing Controllers",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.generateMissingServices",
+        "title": "Generate Missing Services",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.generateMissingRepositories",
+        "title": "Generate Missing Repositories",
+        "category": "Spring Project Boilerplate"
+      },
+      {
         "command": "spring-project-boilerplate.generateDtoAndMapper",
         "title": "Generate DTO & Mapper",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.generateSecurityClasses",
+        "title": "Generate Spring Security Classes",
+        "category": "Spring Project Boilerplate"
+      },
+      {
+        "command": "spring-project-boilerplate.generateGlobalExceptionHandler",
+        "title": "Generate Global Exception Handler",
         "category": "Spring Project Boilerplate"
       }
     ],
@@ -44,7 +80,7 @@
       "explorer/context": [
         {
           "submenu": "spring-project-boilerplate.menu",
-          "when": "(explorerResourceIsFolder && (resourceFilename == src || resourceFilename == model)) || (resourceExtname == .java && (resourcePath =~ /model\\/|model\\|model\\/|model/))",
+          "when": "(explorerResourceIsFolder && (resourceFilename == src || resourceFilename == model || resourceFilename == controller || resourceFilename == service || resourceFilename == repository)) || (resourceExtname == .java && (resourcePath =~ /model\\/|model\\|model\\/|model/))",
           "group": "navigation@1"
         }
       ],
@@ -55,14 +91,44 @@
           "group": "1_structure"
         },
         {
-          "command": "spring-project-boilerplate.createEntityWithLayers",
-          "when": "resourceFilename == src || resourceFilename == model",
+          "command": "spring-project-boilerplate.createEntity",
+          "when": "resourceFilename == src",
           "group": "2_entity"
+        },
+        {
+          "command": "spring-project-boilerplate.createEntityWithLayers",
+          "when": "resourceFilename == src",
+          "group": "3_entity_layers"
+        },
+        {
+          "command": "spring-project-boilerplate.generateSecurityClasses",
+          "when": "resourceFilename == src",
+          "group": "4_security"
+        },
+        {
+          "command": "spring-project-boilerplate.generateGlobalExceptionHandler",
+          "when": "resourceFilename == src",
+          "group": "5_exception"
+        },
+        {
+          "command": "spring-project-boilerplate.generateMissingControllers",
+          "when": "resourceFilename == controller",
+          "group": "6_generate"
+        },
+        {
+          "command": "spring-project-boilerplate.generateMissingServices",
+          "when": "resourceFilename == service",
+          "group": "6_generate"
+        },
+        {
+          "command": "spring-project-boilerplate.generateMissingRepositories",
+          "when": "resourceFilename == repository",
+          "group": "6_generate"
         },
         {
           "command": "spring-project-boilerplate.generateDtoAndMapper",
           "when": "resourceExtname == .java && (resourcePath =~ /model\\/|model\\|model\\/|model/)",
-          "group": "3_dto_mapper"
+          "group": "7_dto_mapper"
         }
       ]
     }

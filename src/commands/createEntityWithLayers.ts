@@ -218,3 +218,4 @@ public class ${entityName}Controller {
   );
   context.subscriptions.push(disposable);
 }
+

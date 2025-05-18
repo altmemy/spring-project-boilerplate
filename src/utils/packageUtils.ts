@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-// searches for the base package directory in a Java project
+// يبحث عن مجلد package الأساسي عبر ملف Main
 export function findBasePackageDir(javaSrcPath: string): string | null {
   let foundDir: string | null = null;
   function searchDir(currentPath: string) {
-    if (foundDir) {return;}
-    if (!fs.existsSync(currentPath)) {return;}
+    if (foundDir) return;
+    if (!fs.existsSync(currentPath)) return;
     const files = fs.readdirSync(currentPath);
     for (const file of files) {
       const fullPath = path.join(currentPath, file);
@@ -25,9 +25,9 @@ export function findBasePackageDir(javaSrcPath: string): string | null {
   return foundDir;
 }
 
-// returns the package name from a given path
+// يحوّل مسار المجلد إلى اسم package جافا
 export function getPackageFromPath(targetDir: string): string {
   const match = targetDir.replace(/\\/g, '/').match(/src\/main\/java\/(.+)$/);
-  if (!match) {return '';}
+  if (!match) return '';
   return match[1].replace(/\//g, '.');
 }
