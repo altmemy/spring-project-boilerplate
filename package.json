@@ -3,7 +3,7 @@
   "displayName": "Spring Project Boilerplate",
   "publisher": "altmemy", 
   "description": "Quickly generate a standard folder structure for Spring Boot projects, including model, controller, service, repository, dto and mapper directories, to help you start coding faster.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.100.0"
   },

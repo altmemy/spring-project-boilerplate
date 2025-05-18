@@ -8,12 +8,13 @@
 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/v/your-publisher.spring-project-boilerplate?color=blue&label=VS%20Code%20Marketplace" alt="VS Code Marketplace Version"></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/d/your-publisher.spring-project-boilerplate?color=green" alt="Downloads"></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=your-publisher.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/r/your-publisher.spring-project-boilerplate?color=yellow" alt="Rating"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=altmemy.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/v/altmemy.spring-project-boilerplate?color=blue&label=VS%20Code%20Marketplace" alt="VS Code Marketplace Version"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=altmemy.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/d/altmemy.spring-project-boilerplate?color=green" alt="Downloads"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=altmemy.spring-project-boilerplate"><img src="https://img.shields.io/visual-studio-marketplace/r/altmemy.spring-project-boilerplate?color=yellow" alt="Rating"></a>
   <img src="https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen" alt="Spring Boot 3.x">
-<img src="https://img.shields.io/badge/License-Apache_2.0-blue" alt="License">
+  <img src="https://img.shields.io/badge/License-Apache_2.0-blue" alt="License">
 </p>
+
 
 > **Transform your development workflow** with a powerful VS Code extension that eliminates repetitive code creation and enforces best practices for Java & Spring Boot. Scaffold complete enterprise-ready projects in seconds.
 
